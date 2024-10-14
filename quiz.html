@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Quiz App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #000000, #434343);
+          }
+          
+          .quiz-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow: auto;
+          }
+          
+          #questionImage {
+            max-width: 100%;
+            max-height: 60vh;
+            display: block;
+            margin: 0 auto;
+          }
+          
+          h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+          }
+          
+          .options div {
+            margin-bottom: 10px;
+          }
+          
+          .options input[type="radio"] {
+            margin-right: 10px;
+          }
+          
+          .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+          }
+          
+          .navigation-buttons button {
+            flex: 1;
+            margin: 0 5px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+          }
+          
+          .navigation-buttons button:hover {
+            background-color: #0056b3;
+          }
+          
+          .countdown-container {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: red;
+          }
+          
+          .footer {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: red;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+          }
+          
+          /* Responsive Styles */
+          @media (max-width: 768px) {
+            body {
+              flex-direction: column;
+              padding: 10px;
+            }
+          
+            .quiz-container {
+              /*width: 100%;
+              max-width: 100%;*/
+              padding: 15px;
+            }
+          
+            h2 {
+              font-size: 1.3rem;
+            }
+          
+            .navigation-buttons {
+              flex-direction: column;
+            }
+          
+            .navigation-buttons button {
+              margin: 08px 0;
+            }
+          
+            .countdown-container {
+              font-size: 1rem;
+            }
+          
+            .footer {
+              font-size: 0.9rem;
+            }
+          }
+          
+          @media (max-width: 480px) {
+            .navigation-buttons button {
+              margin: 7px 0;
+              padding: 12px;
+              font-size: 0.9rem;
+            }
+          }
+          
+    </style>
+    <script type="module">
+      // Firebase SDK
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
+      import { getAuth } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js";
+      import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js";
+      // Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCnwc6_FAzzEjJVj98wdggOlwpA5UfmiFU",
+        authDomain: "onlinetest-practice.firebaseapp.com",
+        projectId: "onlinetest-practice",
+        storageBucket: "onlinetest-practice.appspot.com",
+        messagingSenderId: "1032776077674",
+        appId: "1:1032776077674:web:1f6c2f97ed2fef10a01513",
+        measurementId: "G-7SWJJ5XZYW"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+
+      const questions = [
+      {options: ["a","b","c","d"],answer: 1,image: "q1.png" },
+      {options: ["a","b","c","d"],answer: 0,image: "q2.png"},
+      {options: ["a","b","c","d"],answer: 3,image: "q3.png"},
+      {options: ["a","b","c","d"],answer: 1,image: "q4.png"},
+      {options: ["a","b","c","d"],answer: 2,image: "q5.png"},
+      {options: ["a","b","c","d"],answer: 0,image: "q6.png"},
+      {options: ["a","b","c","d"],answer: 2,image: "q7.png"},
+      {options: ["a","b","c","d"],answer: 2,image: "q8.png"},
+      {options: ["a","b","c","d"],answer: 0,image: "q9.png"},
+      {options: ["a","b","c","d"],answer: 1,image: "q10.png"},
+      {options: ["a","b","c","d"],answer: 0,image: "q11.png"},
+      {options: ["a","b","c","d"],answer: 1,image: "q12.png"},
+      {options: ["a","b","c","d"],answer: 1,image: "q13.png"},
+      {options: ["a","b","c","d"],answer: 3,image: "q14.png"},
+      {options: ["a","b","c","d"],answer: 1,image: "q15.png"}
+      ];
+
+      let currentQuestionIndex = 0;
+      let userAnswers = Array(questions.length).fill(null);
+
+      function renderQuiz() {
+        const quizContainer = document.getElementById("root");
+        const questionNumber = `Q${currentQuestionIndex + 1}`;
+        const questionImage = `upload/${questions[currentQuestionIndex].image}`;
+        const options = questions[currentQuestionIndex].options
+          .map((option, index) => `
+            <div>
+              <input type="radio" id="option${index}" name="option" value="${index}">
+              <label for="option${index}">${option}</label>
+            </div>
+          `).join('');
+
+        quizContainer.innerHTML = `
+          <div class="quiz-container">
+            <h2>${questionNumber}</h2>
+            <img id="questionImage" src="${questionImage}" alt="Question Image" />
+            <div class="options">${options}</div>
+            <div class="navigation-buttons">
+              <button id="prevBtn">Previous</button>
+              <button id="nextBtn">Next</button>
+              <button id="submitBtn">Submit</button>
+            </div>
+            <div class="countdown-container">
+              <span id="countdown">120:00</span>
+            </div>
+          </div>
+        `;
+
+        document.getElementById("prevBtn").onclick = handlePrev;
+        document.getElementById("nextBtn").onclick = handleNext;
+        document.getElementById("submitBtn").onclick = submitQuiz;
+        updateNavigationButtons();
+      }
+
+      function updateNavigationButtons() {
+        document.getElementById('prevBtn').style.display = currentQuestionIndex === 0 ? 'none' : 'inline-block';
+        document.getElementById('nextBtn').style.display = currentQuestionIndex === questions.length - 1 ? 'none' : 'inline-block';
+        document.getElementById('submitBtn').style.display = currentQuestionIndex === questions.length - 1 ? 'inline-block' : 'none';
+      }
+
+      function startCountdown(duration) {
+        let timer = duration;
+        setInterval(() => {
+          const minutes = Math.floor(timer / 60);
+          const seconds = timer % 60;
+          document.getElementById("countdown").textContent = `${minutes < 10 ? "0" : ""}${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+          if (--timer < 0) {
+            window.location.href = "index.html";
+          }
+        }, 1000);
+      }
+
+            let hiddenCount = 0;
+        const maxHiddenCount = 4;
+
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                hiddenCount++;
+                console.log('Page hidden/minimized:', hiddenCount);
+
+                if (hiddenCount >= maxHiddenCount) {
+                    alert('You have minimized the page too many times. The test is over.');
+                    window.location.href = "index.html";
+                }
+            }
+        });
+    let quizSubmitted = false;
+    async function submitQuiz() {
+        const selectedOption = document.querySelector('input[name="option"]:checked');
+        if (selectedOption) {
+          userAnswers[currentQuestionIndex] = parseInt(selectedOption.value);
+        }
+      
+        let score = 0;
+        const correctAnswers = [];
+        for (let i = 0; i < questions.length; i++) {
+          if (userAnswers[i] === questions[i].answer) {
+            score += 4;
+            correctAnswers.push(i);
+          } else if (userAnswers[i] !== null) {
+            score -= 1;
+          }
+        }
+      
+        // Ensure user is authenticated
+        const auth = getAuth();
+        const user = auth.currentUser;
+      
+        if (user) {
+          const userEmail = user.email;  // Get authenticated user's email
+      
+          try {
+            const docRef = await addDoc(collection(db, 'answer'), {
+              email: userEmail,
+              score: score,
+              correctAnswers: correctAnswers
+            });
+            console.log("Document written with ID: ", docRef.id);
+            quizSubmitted = true;
+            alert('Quiz submitted! Your score: ' + score);
+            window.location.href = 'index.html';
+          } catch (error) {
+            console.error('Error writing document: ', error);
+            alert('Failed to submit quiz: ' + error.message);
+          }
+        } else {
+          alert('User is not authenticated!');
+        }
+      }
+      
+
+      function handleNext() {
+        const selectedOption = document.querySelector('input[name="option"]:checked');
+        if (selectedOption) {
+          userAnswers[currentQuestionIndex] = parseInt(selectedOption.value);
+        }
+        if (currentQuestionIndex < questions.length - 1) {
+          currentQuestionIndex++;
+          renderQuiz();
+        }
+      }
+
+      function handlePrev() {
+        const selectedOption = document.querySelector('input[name="option"]:checked');
+        if (selectedOption) {
+          userAnswers[currentQuestionIndex] = parseInt(selectedOption.value);
+        }
+        if (currentQuestionIndex > 0) {
+          currentQuestionIndex--;
+          renderQuiz();
+        }
+      }
+
+      window.onload = function() {
+        renderQuiz();
+        startCountdown(15 * 60);
+      };
+
+      window.addEventListener('beforeunload', function (e) {
+        if (quizSubmitted) return;
+        const message = "Your test will end and the result will not be stored. Click 'Yes' to leave the page, or 'No' to continue the test.";
+        e.preventDefault();
+        e.returnValue = message;
+        return message;
+      });
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
