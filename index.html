@@ -220,6 +220,7 @@
           await setDoc(doc(db, 'users', user.uid), {
             username,
             email,
+            password,
             createdAt: new Date()
           });
           alert('Sign up successful!');
