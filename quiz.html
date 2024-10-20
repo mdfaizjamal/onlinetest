@@ -231,6 +231,42 @@
     });
   }
 
+      let subjectRanges = [
+      { name: "Botany", start: 0, end: 4 },
+      { name: "Zoology", start: 5, end: 8 },
+      { name: "Chemistry", start: 9, end: 12 },
+      { name: "Physics", start: 13, end: 14 },
+    ];
+
+    let markedCounts = Array(subjectRanges.length).fill(0);
+  
+  // Function to update the button text for the subjects
+  function updateSubjectButtons() {
+    const subjectButtons = document.querySelectorAll(".subject-button");
+    subjectButtons.forEach((button, index) => {
+      const { name, start, end } = subjectRanges[index];
+      const totalQuestions = end - start + 1;
+      const markedQuestions = markedCounts[index];
+      button.textContent = `${name} ${markedQuestions}/${totalQuestions}`;
+    });
+  }
+
+  function trackMarkedAnswers() {
+    markedCounts = Array(subjectRanges.length).fill(0);
+    questions.forEach((_, questionIndex) => {
+      const isAnswered = userAnswers[questionIndex] !== null;
+      if (isAnswered) {
+        const subjectIndex = subjectRanges.findIndex(
+          ({ start, end }) => questionIndex >= start && questionIndex <= end
+        );
+        if (subjectIndex >= 0) {
+          markedCounts[subjectIndex]++;
+        }
+      }
+    });
+    updateSubjectButtons();
+  }
+
   function renderQuiz() {
     const quizContainer = document.getElementById("root");
     const questionNumber = `Q${currentQuestionIndex + 1}`;
@@ -268,6 +304,7 @@
     document.getElementById("submitBtn").onclick = submitQuiz;
     document.getElementById("clearOptionBtn").onclick = clearOption; // Attach the clear option function
     updateNavigationButtons();
+    trackMarkedAnswers(); // Update subject buttons
   }
 
   function clearOption() {
@@ -278,6 +315,7 @@
     }
     // Clear the stored answer for the current question
     userAnswers[currentQuestionIndex] = null;
+    trackMarkedAnswers(); // Update subject buttons
   }
 
   function updateNavigationButtons() {
@@ -381,13 +419,27 @@
   function goToQuestion(index) {
     currentQuestionIndex = index;
     renderQuiz();
+    trackMarkedAnswers(); // Update subject buttons on navigation
   }
+  
+  document.querySelectorAll(".subject-button").forEach((button, index) => {
+    const { start } = subjectRanges[index];
+    button.onclick = () => goToQuestion(start);
+  });
 
   window.onload = function () {
     preloadImages();  // Preload images on page load
     renderQuiz();
     startCountdown(15 * 60);
+    updateSubjectButtons(); // Update subject buttons initially
   };
+
+    // Set up subject buttons with data attributes for easier selection
+  document.querySelectorAll(".subject-button").forEach((button, index) => {
+    button.dataset.subject = Object.keys(subjectRanges)[index];
+    button.onclick = () => goToQuestion(subjectRanges[button.dataset.subject].start);
+    updateSubjectButtons(); // Update button text initially
+  });
 
   document.querySelector(".subject-button:nth-child(1)").onclick = () => goToQuestion(0);  // Botany
   document.querySelector(".subject-button:nth-child(2)").onclick = () => goToQuestion(5);  // Zoology
