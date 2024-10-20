@@ -15,10 +15,11 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        height: 100vh;
+        min-height: 100vh;
         background: linear-gradient(to right, #000000, #434343);
+        overflow-y: auto; /* Enable vertical scrolling */
       }
-  
+      
       .container {
         display: flex;
         flex-direction: column;
@@ -27,7 +28,7 @@
         width: 100%;
         max-width: 600px;
       }
-  
+      
       .button-container {
         display: flex;
         flex-wrap: wrap;
@@ -35,7 +36,7 @@
         margin-bottom: 20px;
         width: 100%;
       }
-  
+      
       .subject-button {
         flex: 1;
         margin: 5px;
@@ -48,11 +49,11 @@
         cursor: pointer;
         font-size: 1rem;
       }
-  
+      
       .subject-button:hover {
         background-color: #32cd32;
       }
-  
+      
       .quiz-container {
         background-color: #fff;
         padding: 20px;
@@ -61,36 +62,36 @@
         width: 90%;
         max-width: 500px;
         max-height: 80vh;
-        overflow: auto;
+        overflow-y: auto; /* Allow scrolling within the quiz container */
       }
-  
+      
       #questionImage {
         max-width: 100%;
         max-height: 60vh;
         display: block;
         margin: 0 auto;
       }
-  
+      
       h2 {
         font-size: 1.5rem;
         margin-bottom: 20px;
         text-align: center;
       }
-  
+      
       .options div {
         margin-bottom: 10px;
       }
-  
+      
       .options input[type="radio"] {
         margin-right: 10px;
       }
-  
+      
       .navigation-buttons {
         display: flex;
         justify-content: space-between;
         margin-top: 20px;
       }
-  
+      
       .navigation-buttons button {
         flex: 1;
         margin: 0 5px;
@@ -102,18 +103,18 @@
         cursor: pointer;
         font-size: 1rem;
       }
-  
+      
       .navigation-buttons button:hover {
         background-color: #0056b3;
       }
-  
+      
       .countdown-container {
         text-align: center;
         margin-top: 20px;
         font-size: 1.2rem;
         color: red;
       }
-  
+      
       .footer {
         margin-top: 20px;
         font-size: 1rem;
@@ -125,7 +126,7 @@
         width: 90%;
         max-width: 500px;
       }
-  
+      
       /* Responsive Styles */
       @media (max-width: 768px) {
         .button-container {
@@ -133,43 +134,50 @@
           flex-wrap: wrap;
           justify-content: space-between;
         }
-  
+      
         .subject-button {
-          flex-basis: 48%;
+          
+          flex-direction: row;
         }
-  
+      
         .quiz-container {
           padding: 15px;
         }
-  
+      
         h2 {
           font-size: 1.3rem;
         }
-  
+      
         .navigation-buttons {
           flex-direction: column;
         }
-  
+      
         .navigation-buttons button {
           margin: 8px 0;
         }
-  
+      
         .countdown-container {
           font-size: 1rem;
         }
-  
+      
         .footer {
           font-size: 0.9rem;
         }
       }
-  
+      
       @media (max-width: 480px) {
         .navigation-buttons button {
           margin: 7px 0;
           padding: 12px;
           font-size: 0.9rem;
         }
+      
+        .quiz-container {
+          max-height: 70vh; /* Reduce max-height for smaller screens */
+          overflow-y: auto;
+        }
       }
+      
     </style>
     <script type="module">
       // Firebase SDK
