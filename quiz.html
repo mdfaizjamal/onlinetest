@@ -239,17 +239,19 @@
       .map(
         (option, index) => `
         <div>
-          <input type="radio" id="option${index}" name="option" value="${index}">
+          <input type="radio" id="option${index}" name="option" value="${index}" 
+          ${userAnswers[currentQuestionIndex] === index ? "checked" : ""}>
           <label for="option${index}">${option}</label>
         </div>`
       )
       .join("");
-
+  
     quizContainer.innerHTML = `
       <div class="quiz-container">
         <h2>${questionNumber}</h2>
         <img id="questionImage" src="${questionImage}" alt="Question Image" />
         <div class="options">${options}</div>
+        <button id="clearOptionBtn" class="clear-option-button">Clear Option</button>
         <div class="navigation-buttons">
           <button id="prevBtn">Previous</button>
           <button id="nextBtn">Next</button>
@@ -260,11 +262,22 @@
         </div>
       </div>
     `;
-
+  
     document.getElementById("prevBtn").onclick = handlePrev;
     document.getElementById("nextBtn").onclick = handleNext;
     document.getElementById("submitBtn").onclick = submitQuiz;
+    document.getElementById("clearOptionBtn").onclick = clearOption; // Attach the clear option function
     updateNavigationButtons();
+  }
+
+  function clearOption() {
+    // Uncheck the selected option
+    const selectedOption = document.querySelector("input[name='option']:checked");
+    if (selectedOption) {
+      selectedOption.checked = false;
+    }
+    // Clear the stored answer for the current question
+    userAnswers[currentQuestionIndex] = null;
   }
 
   function updateNavigationButtons() {
