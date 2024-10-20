@@ -365,11 +365,21 @@
     }
   }
 
+  function goToQuestion(index) {
+    currentQuestionIndex = index;
+    renderQuiz();
+  }
+
   window.onload = function () {
     preloadImages();  // Preload images on page load
     renderQuiz();
     startCountdown(15 * 60);
   };
+
+  document.querySelector(".subject-button:nth-child(1)").onclick = () => goToQuestion(0);  // Botany
+  document.querySelector(".subject-button:nth-child(2)").onclick = () => goToQuestion(5);  // Zoology
+  document.querySelector(".subject-button:nth-child(3)").onclick = () => goToQuestion(9);  // Chemistry
+  document.querySelector(".subject-button:nth-child(4)").onclick = () => goToQuestion(13); // Physics
 
   window.addEventListener("beforeunload", function (e) {
     if (quizSubmitted) return;
