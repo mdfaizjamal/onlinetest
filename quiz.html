@@ -6,133 +6,170 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Quiz App</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(to right, #000000, #434343);
-          }
-          
-          .quiz-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 500px;
-            max-height: 80vh;
-            overflow: auto;
-          }
-          
-          #questionImage {
-            max-width: 100%;
-            max-height: 60vh;
-            display: block;
-            margin: 0 auto;
-          }
-          
-          h2 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            text-align: center;
-          }
-          
-          .options div {
-            margin-bottom: 10px;
-          }
-          
-          .options input[type="radio"] {
-            margin-right: 10px;
-          }
-          
-          .navigation-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-          }
-          
-          .navigation-buttons button {
-            flex: 1;
-            margin: 0 5px;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-          }
-          
-          .navigation-buttons button:hover {
-            background-color: #0056b3;
-          }
-          
-          .countdown-container {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 1.2rem;
-            color: red;
-          }
-          
-          .footer {
-            margin-top: 20px;
-            font-size: 1rem;
-            color: red;
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 5px 10px;
-            border-radius: 5px;
-            text-align: center;
-            width: 90%;
-            max-width: 500px;
-          }
-          
-          /* Responsive Styles */
-          @media (max-width: 768px) {
-            body {
-              flex-direction: column;
-              padding: 10px;
-            }
-          
-            .quiz-container {
-              /*width: 100%;
-              max-width: 100%;*/
-              padding: 15px;
-            }
-          
-            h2 {
-              font-size: 1.3rem;
-            }
-          
-            .navigation-buttons {
-              flex-direction: column;
-            }
-          
-            .navigation-buttons button {
-              margin: 08px 0;
-            }
-          
-            .countdown-container {
-              font-size: 1rem;
-            }
-          
-            .footer {
-              font-size: 0.9rem;
-            }
-          }
-          
-          @media (max-width: 480px) {
-            .navigation-buttons button {
-              margin: 7px 0;
-              padding: 12px;
-              font-size: 0.9rem;
-            }
-          }
-          
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        background: linear-gradient(to right, #000000, #434343);
+      }
+  
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 600px;
+      }
+  
+      .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-bottom: 20px;
+        width: 100%;
+      }
+  
+      .subject-button {
+        flex: 1;
+        margin: 5px;
+        padding: 15px;
+        background-color: lightgreen;
+        color: white;
+        text-align: center;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+  
+      .subject-button:hover {
+        background-color: #32cd32;
+      }
+  
+      .quiz-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 500px;
+        max-height: 80vh;
+        overflow: auto;
+      }
+  
+      #questionImage {
+        max-width: 100%;
+        max-height: 60vh;
+        display: block;
+        margin: 0 auto;
+      }
+  
+      h2 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+  
+      .options div {
+        margin-bottom: 10px;
+      }
+  
+      .options input[type="radio"] {
+        margin-right: 10px;
+      }
+  
+      .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+  
+      .navigation-buttons button {
+        flex: 1;
+        margin: 0 5px;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+  
+      .navigation-buttons button:hover {
+        background-color: #0056b3;
+      }
+  
+      .countdown-container {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 1.2rem;
+        color: red;
+      }
+  
+      .footer {
+        margin-top: 20px;
+        font-size: 1rem;
+        color: red;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 5px 10px;
+        border-radius: 5px;
+        text-align: center;
+        width: 90%;
+        max-width: 500px;
+      }
+  
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        .button-container {
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: space-between;
+        }
+  
+        .subject-button {
+          flex-basis: 48%;
+        }
+  
+        .quiz-container {
+          padding: 15px;
+        }
+  
+        h2 {
+          font-size: 1.3rem;
+        }
+  
+        .navigation-buttons {
+          flex-direction: column;
+        }
+  
+        .navigation-buttons button {
+          margin: 8px 0;
+        }
+  
+        .countdown-container {
+          font-size: 1rem;
+        }
+  
+        .footer {
+          font-size: 0.9rem;
+        }
+      }
+  
+      @media (max-width: 480px) {
+        .navigation-buttons button {
+          margin: 7px 0;
+          padding: 12px;
+          font-size: 0.9rem;
+        }
+      }
     </style>
     <script type="module">
       // Firebase SDK
@@ -336,6 +373,12 @@
 </script>
   </head>
   <body>
+    <div class="button-container">
+      <button class="subject-button">Botany</button>
+      <button class="subject-button">Zoology</button>
+      <button class="subject-button">Chemistry</button>
+      <button class="subject-button">Physics</button>
+    </div>
     <div id="root"></div>
   </body>
 </html>
