@@ -201,21 +201,148 @@
       const db = getFirestore(app);
 
       const questions = [
-    { options: ["a", "b", "c", "d"], answer: 1, image: "q1.png" },
-    { options: ["a", "b", "c", "d"], answer: 0, image: "q2.png" },
-    { options: ["a", "b", "c", "d"], answer: 3, image: "q3.png" },
-    { options: ["a", "b", "c", "d"], answer: 1, image: "q4.png" },
-    { options: ["a", "b", "c", "d"], answer: 2, image: "q5.png" },
-    { options: ["a", "b", "c", "d"], answer: 0, image: "q6.png" },
-    { options: ["a", "b", "c", "d"], answer: 2, image: "q7.png" },
-    { options: ["a", "b", "c", "d"], answer: 2, image: "q8.png" },
-    { options: ["a", "b", "c", "d"], answer: 0, image: "q9.png" },
-    { options: ["a", "b", "c", "d"], answer: 1, image: "q10.png" },
-    { options: ["a", "b", "c", "d"], answer: 0, image: "q11.png" },
-    { options: ["a", "b", "c", "d"], answer: 1, image: "q12.png" },
-    { options: ["a", "b", "c", "d"], answer: 1, image: "q13.png" },
-    { options: ["a", "b", "c", "d"], answer: 3, image: "q14.png" },
-    { options: ["a", "b", "c", "d"], answer: 1, image: "q15.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "b1q10.png" },  //botany
+    { options: ["a", "b", "c", "d"], answer: 2, image: "b1q22.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "b1q23.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "b1q25.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "b1q28.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "b2q1.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "b2q2.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "b2q3.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "b2q17.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "b2q39.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "b2q40.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "b3q4.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "b3q13.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "b3q26.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "b4q9.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "b4q56.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "b4q57.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "b4q76.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "b4q77.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "b4q102.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "b4q109.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "b5q8.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "b5q9.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "b5q37.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "b5q56.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "b5q78.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "b6q1.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "b6q2.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "b6q25.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "b6q26.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "b6q81.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "z1q1.png" },   //zoology
+    { options: ["a", "b", "c", "d"], answer: 1, image: "z1q2.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "z1q3.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "z1q61.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "z1q4.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "z2q5.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "z2q7.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "z2q22.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "z2q39.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "z2q40.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "z3q1.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "z3q2.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "z3q48.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "z3q49.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "z3q50.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "z3q51.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "z4q1.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "z4q2.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "z4q15.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "z4q16.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "z4q35.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "z4q46.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "z5q2.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "z5q3.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "z5q4.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "z5q5.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "z5q6.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "z5q7.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "z5q8.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "z5q68.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "z5q70.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "c1q1.png" },    //chemistry
+    { options: ["a", "b", "c", "d"], answer: 2, image: "c1q7.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "c1q9.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "c2q6.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "c2q7.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "c2q8.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "c2q23.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "c2q44.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "c2q79.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "c2q91.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "c2q92.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "c3q6.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "c3q7.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "c3q38.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "c3q46.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "c4q4.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "c4q5.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "c4q34.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "c4q44.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "c4q45.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "c5q2.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "c5q16.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "c5q26.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "c5q23.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "c5q38.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "c5q39.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "c5q53.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "c5q83.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "c5q94.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "c6q1.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "c6q17.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "c6q33.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "c6q45.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "c6q46.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "c7q1.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "c7q17.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "c7q18.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "c7q19.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "c7q28.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "p2q24.png" },  //physics
+    { options: ["a", "b", "c", "d"], answer: 1, image: "p2q46.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "p3q8.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "p3q19.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "p3q15.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "p3q37.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "p3q38.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "p4q31.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "p4q33.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "p4q48.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "p4q49.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "p4q61.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "p4q62.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "p4q63.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "p5q7.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "p5q15.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "p5q30.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "p5q39.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "p5q40.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "p5q66.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "p5q67.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "p6q1.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "p6q16.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "p6q17.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "p6q34.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "p6q57.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "p6q58.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "p6q59.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "p6q69.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "p6q70.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "p6q79.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "p6q80.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "p7q1.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "p7q8.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "p7q18.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "p7q26.png" },
+    { options: ["a", "b", "c", "d"], answer: 0, image: "p7q27.png" },
+    { options: ["a", "b", "c", "d"], answer: 2, image: "p7q28.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "p7q29.png" },
+    { options: ["a", "b", "c", "d"], answer: 3, image: "p7q32.png" },
+    { options: ["a", "b", "c", "d"], answer: 1, image: "p7q58.png" },
   ];
 
   let currentQuestionIndex = 0;
@@ -232,10 +359,10 @@
   }
 
       let subjectRanges = [
-      { name: "Botany", start: 0, end: 4 },
-      { name: "Zoology", start: 5, end: 8 },
-      { name: "Chemistry", start: 9, end: 12 },
-      { name: "Physics", start: 13, end: 14 },
+      { name: "Botany", start: 0, end: 30 },
+      { name: "Zoology", start: 31, end: 61 },
+      { name: "Chemistry", start: 62, end: 100 },
+      { name: "Physics", start: 101, end: 141 },
     ];
 
     let markedCounts = Array(subjectRanges.length).fill(0);
@@ -294,7 +421,7 @@
           <button id="submitBtn">Submit</button>
         </div>
         <div class="countdown-container">
-          <span id="countdown">15:00</span>
+          <span id="countdown">150:00</span>
         </div>
       </div>
     `;
@@ -360,12 +487,14 @@
 
     let score = 0;
     const correctAnswers = [];
+    const wrongAnswer = [];
     for (let i = 0; i < questions.length; i++) {
       if (userAnswers[i] === questions[i].answer) {
         score += 4;
         correctAnswers.push(i+1);
       } else if (userAnswers[i] !== null) {
         score -= 1;
+        wrongAnswer.push(i+1);
       }
     }
 
@@ -380,10 +509,11 @@
           email: userEmail,
           score: score,
           correctAnswers: correctAnswers,
+          wrongAnswer: wrongAnswer,
         });
         console.log("Document written with ID: ", docRef.id);
         quizSubmitted = true;
-        alert("Quiz submitted! Your score: " + score);
+        alert("Quiz submitted! Your score: " + score +"/568");
         window.location.href = "index.html";
       } catch (error) {
         console.error("Error writing document: ", error);
@@ -430,7 +560,7 @@
   window.onload = function () {
     preloadImages();  // Preload images on page load
     renderQuiz();
-    startCountdown(15 * 60);
+    startCountdown(150 * 60);
     updateSubjectButtons(); // Update subject buttons initially
   };
 
@@ -442,9 +572,9 @@
   });
 
   document.querySelector(".subject-button:nth-child(1)").onclick = () => goToQuestion(0);  // Botany
-  document.querySelector(".subject-button:nth-child(2)").onclick = () => goToQuestion(5);  // Zoology
-  document.querySelector(".subject-button:nth-child(3)").onclick = () => goToQuestion(9);  // Chemistry
-  document.querySelector(".subject-button:nth-child(4)").onclick = () => goToQuestion(13); // Physics
+  document.querySelector(".subject-button:nth-child(2)").onclick = () => goToQuestion(31);  // Zoology
+  document.querySelector(".subject-button:nth-child(3)").onclick = () => goToQuestion(62);  // Chemistry
+  document.querySelector(".subject-button:nth-child(4)").onclick = () => goToQuestion(101); // Physics
 
   window.addEventListener("beforeunload", function (e) {
     if (quizSubmitted) return;
