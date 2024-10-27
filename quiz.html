@@ -270,7 +270,6 @@
     { options: ["a", "b", "c", "d"], answer: 2, image: "c2q7.png" },
     { options: ["a", "b", "c", "d"], answer: 3, image: "c2q8.png" },
     { options: ["a", "b", "c", "d"], answer: 1, image: "c2q23.png" },
-    { options: ["a", "b", "c", "d"], answer: 1, image: "c2q44.png" },
     { options: ["a", "b", "c", "d"], answer: 1, image: "c2q79.png" },
     { options: ["a", "b", "c", "d"], answer: 0, image: "c2q91.png" },
     { options: ["a", "b", "c", "d"], answer: 3, image: "c2q92.png" },
@@ -361,8 +360,8 @@
       let subjectRanges = [
       { name: "Botany", start: 0, end: 30 },
       { name: "Zoology", start: 31, end: 61 },
-      { name: "Chemistry", start: 62, end: 100 },
-      { name: "Physics", start: 101, end: 141 },
+      { name: "Chemistry", start: 62, end: 99 },
+      { name: "Physics", start: 100, end: 140 },
     ];
 
     let markedCounts = Array(subjectRanges.length).fill(0);
@@ -574,7 +573,7 @@
   document.querySelector(".subject-button:nth-child(1)").onclick = () => goToQuestion(0);  // Botany
   document.querySelector(".subject-button:nth-child(2)").onclick = () => goToQuestion(31);  // Zoology
   document.querySelector(".subject-button:nth-child(3)").onclick = () => goToQuestion(62);  // Chemistry
-  document.querySelector(".subject-button:nth-child(4)").onclick = () => goToQuestion(101); // Physics
+  document.querySelector(".subject-button:nth-child(4)").onclick = () => goToQuestion(100); // Physics
 
   window.addEventListener("beforeunload", function (e) {
     if (quizSubmitted) return;
